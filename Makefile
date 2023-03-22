@@ -2,6 +2,10 @@ CXX = arm-linux-gnueabihf-g++
 CC = arm-linux-gnueabihf-gcc
 CXXFLAGS = -Wall -Werror -O3 -std=c++17
 
+SSH_USERNAME = pi
+SSH_IP = 192.168.31.109
+SSH_TARGET_FOLDER = /home/pi/
+
 RGB_LIB_DISTRIBUTION=lib
 RGB_INCDIR=$(RGB_LIB_DISTRIBUTION)/include
 RGB_LIBDIR=$(RGB_LIB_DISTRIBUTION)/lib
@@ -15,7 +19,10 @@ OBJS = $(SRCS:.cpp=.o)
 
 .PHONY: all clean
 
-all: $(TARGET)
+all: $(TARGET) push
+
+push: $(TARGET)
+	scp $(TARGET) $(SSH_USERNAME)@$(SSH_IP):$(SSH_TARGET_FOLDER)
 
 $(TARGET): $(OBJS) $(RGB_LIBRARY)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $@ $(LDFLAGS)
