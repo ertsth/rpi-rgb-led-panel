@@ -24,14 +24,20 @@ all: $(TARGET) push
 push: $(TARGET)
 	scp $(TARGET) $(SSH_USERNAME)@$(SSH_IP):$(SSH_TARGET_FOLDER)
 
-$(TARGET): $(OBJS) $(RGB_LIBRARY)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $@ $(LDFLAGS)
+$(TARGET): main.o LedMatrix.o Color.o
+	$(CXX) $(CXXFLAGS) -o $@ main.o LedMatrix.o Color.o $(LDFLAGS)
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+main.o: main.cpp src/LedMatrix.h src/Color.h
+	$(CXX) $(CXXFLAGS) -o $@ $< -c
+
+Color.o: src/Color.cpp src/Color.h
+	$(CXX) $(CXXFLAGS) -o $@ $< -c
+
+LedMatrix.o: src/LedMatrix.cpp src/LedMatrix.h src/Color.h
+	$(CXX) $(CXXFLAGS) -o $@ $< -c
 
 $(RGB_LIBRARY):
 	$(MAKE) -C $(RGB_LIBDIR) CXX=$(CXX) CC=$(CC)
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f *.o $(TARGET)
