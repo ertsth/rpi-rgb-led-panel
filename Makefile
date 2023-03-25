@@ -7,6 +7,7 @@ CXXFLAGS = -Wall -Werror -O3 -std=c++17
 SSH_USERNAME = pi
 SSH_IP = 192.168.31.109
 SSH_TARGET_FOLDER = /home/pi/
+SSH_MODES_FOLDER = /home/pi/modes/
 
 # rgbmatrix lib
 RGB_LIB_DISTRIBUTION=lib
@@ -26,6 +27,7 @@ LDFLAGS+=-L$(LUA_LIBDIR) -l$(LUA_LIBRARY_NAME) -static
 
 # Target
 TARGET = target.out
+MODES = src/modes
 
 # main
 MAIN_CPP = main.cpp
@@ -42,6 +44,7 @@ all: $(TARGET) push
 
 push: $(TARGET)
 	scp $(TARGET) $(SSH_USERNAME)@$(SSH_IP):$(SSH_TARGET_FOLDER)
+	scp -r $(MODES) $(SSH_USERNAME)@$(SSH_IP):$(SSH_MODES_FOLDER)
 
 $(TARGET): $(OBJS) main.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)

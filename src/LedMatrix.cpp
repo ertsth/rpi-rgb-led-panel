@@ -31,6 +31,7 @@ rgb_matrix::RuntimeOptions* LedMatrix::parseRuntimeOptions() {
     rgb_matrix::RuntimeOptions* runtime_options = new rgb_matrix::RuntimeOptions();
     runtime_options->drop_privileges = 1;
     runtime_options->gpio_slowdown = 4;
+    runtime_options->drop_privileges = 0;
 
     return runtime_options;
 }
