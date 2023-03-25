@@ -16,6 +16,14 @@ RGB_LIBRARY_NAME=rgbmatrix
 RGB_LIBRARY=$(RGB_LIBDIR)/lib$(RGB_LIBRARY_NAME).a
 LDFLAGS+=-L$(RGB_LIBDIR) -l$(RGB_LIBRARY_NAME) -lrt -lm -lpthread -static
 
+# lua lib
+LUA_LIB_DISTRIBUTION=lua
+LUA_INCDIR=$(LUA_LIB_DISTRIBUTION)/lua-5.4.4/install/include
+LUA_LIBDIR=$(LUA_LIB_DISTRIBUTION)/lua-5.4.4/install/lib
+LUA_LIBRARY_NAME=lua
+LUA_LIBRARY=$(LUA_LIBDIR)/lib$(LUA_LIBRARY_NAME).a
+LDFLAGS+=-L$(LUA_LIBDIR) -l$(LUA_LIBRARY_NAME) -static
+
 # Target
 TARGET = target.out
 
@@ -39,13 +47,16 @@ $(TARGET): $(OBJS) main.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 main.o: main.cpp $(SRCS_DIR)/*.h
-	$(CXX) $(CXXFLAGS) -o $@ $< -c
+	$(CXX) $(CXXFLAGS) -o $@ $< -c -I$(LUA_INCDIR) $(RGB_INCDIR)
 
-$(SRCS_DIR)/%.o: $(SRCS_DIR)/%.cpp $(SRCS_DIR)/*.h $(RGB_LIBRARY)
-	$(CXX) $(CXXFLAGS) -c $< -o $@ $(LDFLAGS)
+$(SRCS_DIR)/%.o: $(SRCS_DIR)/%.cpp $(SRCS_DIR)/*.h $(RGB_INCDIR) $(LUA_INCDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@ -I$(LUA_INCDIR) $(RGB_INCDIR)
 
 $(RGB_LIBRARY):
 	$(MAKE) -C $(RGB_LIBDIR) CXX=$(CXX) CC=$(CC)
+
+$(LUA_LIBRARY):
+	$(MAKE) -C $(LUA_LIBDIR) local CXX=$(CXX) CC=$(CC)
 
 clean:
 	rm -f *.o $(TARGET)
