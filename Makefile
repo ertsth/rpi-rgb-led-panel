@@ -7,7 +7,7 @@ CXXFLAGS = -Wall -Werror -O3 -std=c++17
 SSH_USERNAME = pi
 SSH_IP = 192.168.31.109
 SSH_TARGET_FOLDER = /home/pi/
-SSH_MODES_FOLDER = /home/pi/modes/
+SSH_MODES_FOLDER = /home/pi/
 
 # rgbmatrix lib
 RGB_LIB_DISTRIBUTION=lib
