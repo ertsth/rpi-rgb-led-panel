@@ -5,7 +5,7 @@ CXXFLAGS = -Wall -Werror -O3 -std=c++17
 
 # SSH
 SSH_USERNAME = pi
-SSH_IP = 192.168.31.109
+SSH_IP = 192.168.0.102
 SSH_TARGET_FOLDER = /home/pi/
 SSH_MODES_FOLDER = /home/pi/
 
