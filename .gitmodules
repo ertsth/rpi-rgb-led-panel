@@ -1,3 +1,6 @@
-[submodule "rpi-rgb-led-matrix"]
+[submodule "lib/rpi-rgb-led-matrix"]
 	path = lib/rpi-rgb-led-matrix
 	url = git@github.com:hzeller/rpi-rgb-led-matrix.git
+[submodule "lib/serial"]
+	path = lib/serial
+	url = git@github.com:wjwwood/serial.git
