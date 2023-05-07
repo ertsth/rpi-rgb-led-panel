@@ -9,7 +9,8 @@ public:
     ~ModeManager();
 
     enum MODE {
-        HELLO
+        HELLO,
+        GAME_LIFE
     };
 
     void startMode(ModeManager::MODE mode);
