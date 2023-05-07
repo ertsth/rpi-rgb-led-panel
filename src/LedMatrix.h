@@ -2,8 +2,8 @@
 #define LED_MATRIX_H
 
 // TODO: consider avoiding relative includes
-#include "../lib/include/led-matrix.h"
-#include "../lib/include/canvas.h"
+#include "../lib/rpi-rgb-led-matrix/include/led-matrix.h"
+#include "../lib/rpi-rgb-led-matrix/include/canvas.h"
 #include "Color.h"
 
 #include <memory>
