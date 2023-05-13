@@ -17,3 +17,16 @@ Color Color::of(const std::string& name) {
     // TODO
     return *(new Color(0, 0, 0));
 }
+
+Color Color::fromHex(const std::string& hex) {
+
+    unsigned int val;
+    std::stringstream ss;
+    ss << std::hex << hex;
+    ss >> val;
+    int r = val >> 16;
+    int g = (val & 0x00ff00) >> 8;
+    int b = val & 0x0000ff;
+
+    return *(new Color(r, g, b));
+}

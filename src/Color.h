@@ -2,6 +2,7 @@
 #define COLOR_H
 
 #include <string>
+#include <sstream>
 
 class Color {
 public:
@@ -14,6 +15,7 @@ public:
 
     // Static method to create a color based on a string name
     static Color of(const std::string& name);
+    static Color fromHex(const std::string& hex);
 };
 
 #endif // COLOR_H
