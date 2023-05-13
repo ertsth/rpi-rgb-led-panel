@@ -81,3 +81,7 @@ LuaWrapper& LuaWrapper::getInstance() {
 void LuaWrapper::doFile(std::string name) {
     luaL_dofile(this->L, name.c_str());
 }
+
+void LuaWrapper::doString(std::string str) {
+    luaL_dostring(this->L, str.c_str());
+}

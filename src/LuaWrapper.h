@@ -21,6 +21,7 @@ public:
     void clear();
 
     void doFile(std::string name);
+    void doString(std::string str);
 
 private:
     LuaWrapper();
