@@ -20,7 +20,7 @@ rgb_matrix::RGBMatrix::Options* LedMatrix::parseConstOptions() {
     led_options->brightness = 50;
     led_options->chain_length = 1;
     led_options->parallel = 1;
-    led_options->pixel_mapper_config = "Mirror:V";
+    led_options->pixel_mapper_config = "Rotate:270";
     led_options->pwm_lsb_nanoseconds = 180;
 
     return led_options;
