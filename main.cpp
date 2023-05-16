@@ -1,14 +1,23 @@
-#include "src/ModeManager.h"
+// #include "src/ModeManager.h"
+#include "src/BluetoothDevice.h"
 
-#include <thread>
-#include <chrono>
+// #include <thread>
+// #include <chrono>
+#include <iostream>
 
-using namespace std::chrono_literals;
+#include "lib/json/json.hpp"
+
+// using namespace std::chrono_literals;
 
 int main(int argc, char **argv) {
 
-    ModeManager* mm = new ModeManager();
-    mm->startMode(ModeManager::MODE::GAME_LIFE);
+    BluetoothDevice* bt = new BluetoothDevice();
+    while (true)
+    {
+        bt->connect();
+        sleep(5);
+    }
+    bt->disconnect();
 
     return 0;
 }
