@@ -6,6 +6,7 @@
 #include "../lib/json/json.hpp"
 #include "LedMatrix.h"
 #include "LuaWrapper.h"
+#include "modes/GameOfLife.h"
 #include <fstream>
 
 #include<unistd.h>               // for linux
@@ -45,6 +46,7 @@ public:
     const static char* KEY_SNAKE_DIRECTION;
 private:
     LedMatrix mMatrix;
+    GameOfLife mGameOfLife = GameOfLife(64, 64);
 };
 
 #endif // MESSAGE_HANDLER_H

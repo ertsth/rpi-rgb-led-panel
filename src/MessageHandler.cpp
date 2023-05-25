@@ -15,12 +15,12 @@ const char* MessageHandler::KEY_GENERAL_FILL_MATRIX = "fill_matrix";
 // Spotify mode
 const char* MessageHandler::KEY_SPOTIFY_TOKEN = "token";
 // Game of life mode
-const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_ACTION = "";
-const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_COLOR_ALIVE = "";
-const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_COLOR_DEAD = "";
-const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_RULE_BIRTH = "";
-const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_RULE_SURVIVE = "";
-const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_SPEED = "";
+const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_ACTION = "action";
+const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_COLOR_ALIVE = "color_alive";
+const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_COLOR_DEAD = "color_dead";
+const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_RULE_BIRTH = "rule_birth";
+const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_RULE_SURVIVE = "rule_survive";
+const char* MessageHandler::KEY_GAME_OF_LIFE_MODE_SPEED = "speed";
 // Custom mode
 const char* MessageHandler::KEY_CUSTOM_SCRIPT = "script";
 // Snake mode
@@ -53,6 +53,16 @@ void MessageHandler::handleMessage(std::string msg) {
 
             }
         } else if (mode.compare(MODE_GAME_OF_LIFE) == 0) {
+            if (json.find(KEY_GAME_OF_LIFE_MODE_ACTION) != json.end()) {
+                nlohmann::json str = json[KEY_GAME_OF_LIFE_MODE_ACTION];
+                if (str == "start") mGameOfLife.start();
+                else if (str == "stop") mGameOfLife.stop();
+            } else if (json.find(KEY_GAME_OF_LIFE_MODE_COLOR_ALIVE) != json.end()) {
+                nlohmann::json colorAlive = json[KEY_GAME_OF_LIFE_MODE_COLOR_ALIVE];
+                mGameOfLife.setColorOfAlive(Color::fromHex(colorAlive));
+                nlohmann::json colorDead = json[KEY_GAME_OF_LIFE_MODE_COLOR_DEAD];
+                mGameOfLife.setColorOfDead(Color::fromHex(colorDead));
+            }
 
         } else if (mode.compare(MODE_IMAGE) == 0) {
             if (json.find(KEY_GENERAL_SET_PIXEL) != json.end()) {
