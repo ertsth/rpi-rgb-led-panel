@@ -8,9 +8,12 @@
 #include "LuaWrapper.h"
 #include <fstream>
 
+#include<unistd.h>               // for linux
+
 class MessageHandler {
 public:
     void handleMessage(std::string msg);
+    void processMessage();
 
     // Modes
     const static char* MODE_PAINT;
@@ -41,7 +44,6 @@ public:
     const static char* KEY_SNAKE_COLOR_FOOD;
     const static char* KEY_SNAKE_DIRECTION;
 private:
-
     LedMatrix mMatrix;
 };
 

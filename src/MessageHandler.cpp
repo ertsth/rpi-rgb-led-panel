@@ -35,7 +35,6 @@ void MessageHandler::handleMessage(std::string msg) {
         nlohmann::json json = nlohmann::json::parse(msg);
 
         std::string mode = json[KEY_GENERAL_MODE_NAME];
-        std::cout << "Handling msg for mode: " << mode << std::endl;
 
         if(mode.compare(MODE_PAINT) == 0) {
             if (json.find(KEY_GENERAL_SET_PIXEL) != json.end()) {
@@ -58,7 +57,7 @@ void MessageHandler::handleMessage(std::string msg) {
         } else if (mode.compare(MODE_IMAGE) == 0) {
             if (json.find(KEY_GENERAL_SET_PIXEL) != json.end()) {
                 nlohmann::json jobj_pixel = json[KEY_GENERAL_SET_PIXEL];
-                std::cout << "Parsed: " << jobj_pixel["x"] << " " << jobj_pixel["y"] << " " << jobj_pixel["color"] << std::endl;
+                // std::cout << "Parsed: " << jobj_pixel["x"] << " " << jobj_pixel["y"] << " " << jobj_pixel["color"] << std::endl;
                 mMatrix.setPixel(jobj_pixel["x"], jobj_pixel["y"], Color::fromHex(jobj_pixel["color"]));
             }
         } else if (mode.compare(MODE_SNAKE) == 0) {
@@ -74,6 +73,7 @@ void MessageHandler::handleMessage(std::string msg) {
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        // std::cerr << e.what() << '\n';
+        std::cout << "Can't process: " + msg << std::endl;
     }
 }

@@ -25,7 +25,7 @@ void BluetoothDevice::writeMsg(std::string &msg) {
 }
 
 void BluetoothDevice::ReadThread::operator()(BluetoothDevice* bt) {
-    MessageHandler handler;
+    MessagePreprocessor preprocessor;
     while (true)
     {
         if (bt->m_fd < 0) {
@@ -36,12 +36,11 @@ void BluetoothDevice::ReadThread::operator()(BluetoothDevice* bt) {
             int num_bytes = read(bt->m_fd, &read_buf, sizeof(read_buf));
 
             if (num_bytes > 0) {
-                printf("Received message(%i): %s\n", num_bytes, read_buf);
+                // printf("Received message(%i): %s\n", num_bytes, read_buf);
             }
 
             std::string msg(read_buf);
-            // TODO: handle in a separate thread
-            handler.handleMessage(msg);
+            preprocessor.addData(msg);
         }
     }
 }

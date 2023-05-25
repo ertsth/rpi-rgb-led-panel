@@ -13,6 +13,7 @@
 #include <unistd.h> // write(), read(), close()
 
 #include "MessageHandler.h"
+#include "MessagePreprocessor.h"
 
 class BluetoothDevice {
 public:
