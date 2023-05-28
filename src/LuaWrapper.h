@@ -27,7 +27,6 @@ private:
     LuaWrapper();
     ~LuaWrapper();
     lua_State* L;
-    std::unique_ptr<LedMatrix> matrix = std::make_unique<LedMatrix>();
 };
 
 

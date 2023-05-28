@@ -1,13 +1,11 @@
 // #include "src/ModeManager.h"
 #include "src/BluetoothDevice.h"
 
-// #include <thread>
-// #include <chrono>
+#include <thread>
+#include <chrono>
 #include <iostream>
 
-#include "lib/json/json.hpp"
-
-// using namespace std::chrono_literals;
+#include <unistd.h>               // for linux
 
 int main(int argc, char **argv) {
 

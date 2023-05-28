@@ -10,12 +10,15 @@
 
 class LedMatrix {
 public:
-    LedMatrix();
+    static LedMatrix* getInstance();
     void setPixel(int x, int y, Color color);
     void fill(Color color);
     void clear();
 
 private:
+    static LedMatrix* mInstance;
+    // singleton
+    LedMatrix();
     std::unique_ptr<rgb_matrix::Canvas> _libMatrix;
 
     rgb_matrix::RGBMatrix::Options* parseConstOptions();

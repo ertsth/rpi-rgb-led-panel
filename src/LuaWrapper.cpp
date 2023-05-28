@@ -57,15 +57,15 @@ LuaWrapper::LuaWrapper() {
 }
 
 void LuaWrapper::fill(int r, int g, int b) {
-    this->matrix->fill(*(new Color(r, g, b)));
+    LedMatrix::getInstance()->fill(*(new Color(r, g, b)));
 }
 
 void LuaWrapper::setPixel(int x, int y, int r, int g, int b) {
-    this->matrix->setPixel(x, y, *(new Color(r, g, b)));
+    LedMatrix::getInstance()->setPixel(x, y, *(new Color(r, g, b)));
 }
 
 void LuaWrapper::clear() {
-    this->matrix->clear();
+    LedMatrix::getInstance()->clear();
 }
 
 LuaWrapper::~LuaWrapper() {

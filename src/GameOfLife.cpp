@@ -10,8 +10,6 @@ GameOfLife::GameOfLife(int rows, int cols, std::vector<std::vector<Cell>> initSt
     mColumns = cols;
     mCellGridActive = initState;
     mCellGridBuffer = std::vector<std::vector<Cell>>(mRows, std::vector<Cell>(mColumns));
-
-    mThread = std::make_unique<std::thread>(&GameOfLife::loop, this);
 }
 
 void GameOfLife::setColorOfAlive(Color color) {
@@ -30,23 +28,25 @@ void GameOfLife::setRuleOfSurvive(std::string rule) {
     mRuleSurvive = rule;
 }
 
+void GameOfLife::setSpeed(std::string speed) {
+    mTimeout = DEFAULT_TIMEOUT * std::stof(speed);
+    std::cout << "Timeout (ms): " << mTimeout << std::endl;
+}
+
 void GameOfLife::start() {
     mMutex.lock();
     mState = GameState::ACTIVE;
     mMutex.unlock();
 }
 
-void GameOfLife::loop() {
-
-    while(true) {
-        mMutex.lock();
-        if (mState == GameState::ACTIVE) {
-            mMutex.unlock();
-            step();
-        }
+void GameOfLife::run() {
+    mMutex.lock();
+    if (mState == GameState::ACTIVE) {
         mMutex.unlock();
-        sleep(mTimeout_s);
+        step();
     }
+    mMutex.unlock();
+    std::this_thread::sleep_for(std::chrono::milliseconds(mTimeout));;
 }
 
 void GameOfLife::step() {
@@ -61,12 +61,12 @@ void GameOfLife::stop() {
 }
 
 void GameOfLife::redraw() {
-    // for (int i = 0; i < mRows; ++i) {
-    //     for (int j = 0; j < mColumns; ++j) {
-    //         if (mCellGridActive[i][j].state == CellState::ALIVE) mMatrix.setPixel(i, j, mColorAlive);
-    //         else if (mCellGridActive[i][j].state == CellState::DEAD) mMatrix.setPixel(i, j, mColorDead);
-    //     }
-    // }
+    for (int i = 0; i < mRows; ++i) {
+        for (int j = 0; j < mColumns; ++j) {
+            if (mCellGridActive[i][j].state == CellState::ALIVE) LedMatrix::getInstance()->setPixel(i, j, mColorAlive);
+            else if (mCellGridActive[i][j].state == CellState::DEAD) LedMatrix::getInstance()->setPixel(i, j, mColorDead);
+        }
+    }
 }
 
 void GameOfLife::runIteration() {

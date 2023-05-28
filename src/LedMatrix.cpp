@@ -36,6 +36,15 @@ rgb_matrix::RuntimeOptions* LedMatrix::parseRuntimeOptions() {
     return runtime_options;
 }
 
+LedMatrix* LedMatrix::mInstance = nullptr;
+
+LedMatrix* LedMatrix::getInstance() {
+    if (mInstance == nullptr) {
+        mInstance = new LedMatrix();
+    }
+    return mInstance;
+}
+
 void LedMatrix::setPixel(int x, int y, Color color) {
     _libMatrix->SetPixel(x, y, color.r, color.g, color.b);
 }
