@@ -5,6 +5,7 @@
 #include "IModeHandler.h"
 #include "DummyHandler.h"
 #include "GameOfLifeHandler.h"
+#include "SnakeHandler.h"
 #include <thread>
 
 class GameOfLifeHandler;

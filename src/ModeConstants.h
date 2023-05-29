@@ -41,10 +41,11 @@ class ModeConstants {
     // Custom mode
     const static char* KEY_CUSTOM_SCRIPT;
     // Snake mode
-    const static char* KEY_SNAKE_COLOR_BACKGROUND;
+    const static char* KEY_SNAKE_COLOR_FIELD;
     const static char* KEY_SNAKE_COLOR_SNAKE;
     const static char* KEY_SNAKE_COLOR_FOOD;
     const static char* KEY_SNAKE_DIRECTION;
+    const static char* KEY_SNAKE_SPEED;
 };
 
 #endif // MODE_CONSTANTS

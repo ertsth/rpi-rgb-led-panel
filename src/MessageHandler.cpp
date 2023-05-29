@@ -55,7 +55,23 @@ void MessageHandler::handleMessage(std::string msg) {
                 LedMatrix::getInstance()->setPixel(jobj_pixel["x"], jobj_pixel["y"], Color::fromHex(jobj_pixel["color"]));
             }
         } else if (mode.compare(ModeConstants::MODE_SNAKE) == 0) {
-
+            if (mModeManager.getActiveMode() != MODE::SNAKE) mModeManager.startMode(MODE::SNAKE);
+            if (json.find(ModeConstants::KEY_SNAKE_COLOR_FIELD) != json.end()) {
+                param.first = ModeConstants::KEY_SNAKE_COLOR_FIELD;
+                param.second = json[ModeConstants::KEY_SNAKE_COLOR_FIELD];
+            } else if (json.find(ModeConstants::KEY_SNAKE_COLOR_SNAKE) != json.end()) {
+                param.first = ModeConstants::KEY_SNAKE_COLOR_SNAKE;
+                param.second = json[ModeConstants::KEY_SNAKE_COLOR_SNAKE];
+            } else if (json.find(ModeConstants::KEY_SNAKE_COLOR_FOOD) != json.end()) {
+                param.first = ModeConstants::KEY_SNAKE_COLOR_FOOD;
+                param.second = json[ModeConstants::KEY_SNAKE_COLOR_FOOD];
+            } else if (json.find(ModeConstants::KEY_SNAKE_DIRECTION) != json.end()) {
+                param.first = ModeConstants::KEY_SNAKE_DIRECTION;
+                param.second = json[ModeConstants::KEY_SNAKE_DIRECTION];
+            } else if (json.find(ModeConstants::KEY_SNAKE_SPEED) != json.end()) {
+                param.first = ModeConstants::KEY_SNAKE_SPEED;
+                param.second = json[ModeConstants::KEY_SNAKE_SPEED];
+            }
         } else if (mode.compare(ModeConstants::MODE_CUSTOM) == 0) {
             std::string script = json[ModeConstants::KEY_CUSTOM_SCRIPT];
             // std::cout << "Parsed: " << script << std::endl;

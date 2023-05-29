@@ -18,7 +18,9 @@ void ModeManager::startMode(MODE mode) {
         case MODE::GAME_OF_LIFE:
             mActiveMode = std::make_unique<GameOfLifeHandler>();
             break;
-
+        case MODE::SNAKE:
+            mActiveMode = std::make_unique<SnakeHandler>();
+            break;
         default:
 
             break;
