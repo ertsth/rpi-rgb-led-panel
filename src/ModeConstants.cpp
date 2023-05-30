@@ -11,6 +11,7 @@ const char* ModeConstants::MODE_CUSTOM = "CUSTOM";
 const char* ModeConstants::KEY_GENERAL_MODE_NAME = "name";
 const char* ModeConstants::KEY_GENERAL_SET_PIXEL = "set_pixel";
 const char* ModeConstants::KEY_GENERAL_FILL_MATRIX = "fill_matrix";
+const char* ModeConstants::KEY_GENERAL_NEW_MODE = "new_mode";
 // Spotify mode
 const char* ModeConstants::KEY_SPOTIFY_TOKEN = "token";
 // Game of life mode

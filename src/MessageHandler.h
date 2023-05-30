@@ -15,6 +15,8 @@
 class MessageHandler {
 public:
     void handleMessage(std::string msg);
+    void commandModeChanged(std::string msg);
+    void commandModeSetting(nlohmann::json json);
 private:
     ModeManager mModeManager;
 };

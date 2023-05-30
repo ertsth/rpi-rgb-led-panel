@@ -29,6 +29,7 @@ class ModeConstants {
     const static char* KEY_GENERAL_MODE_NAME;
     const static char* KEY_GENERAL_SET_PIXEL;
     const static char* KEY_GENERAL_FILL_MATRIX;
+    const static char* KEY_GENERAL_NEW_MODE;
     // Spotify mode
     const static char* KEY_SPOTIFY_TOKEN;
     // Game of life mode
