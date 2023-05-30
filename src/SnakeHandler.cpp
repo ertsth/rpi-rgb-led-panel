@@ -9,7 +9,7 @@ MODE SnakeHandler::getModeName() {
 }
 
 void SnakeHandler::onInit() {
-
+    mSnake.get()->init();
 }
 
 void SnakeHandler::onFinish() {

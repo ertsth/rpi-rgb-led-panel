@@ -54,7 +54,7 @@ class Snake {
     private:
     bool isOutOfBounds(Position pos);
     bool isOnFood(Position pos);
-    void generateFood();
+    void generateFood(int amount);
     void createSnake();
     Position getNextCell(Position curr, Direction direction);
 
@@ -71,7 +71,7 @@ class Snake {
     Color mColorFood = Color(255, 0, 0);
     Color mColorField = Color(0, 0, 0);
 
-    uint const DEFAULT_TIMEOUT = 1000;
+    uint const DEFAULT_TIMEOUT = 100;
     uint mTimeout = DEFAULT_TIMEOUT;
 };
 

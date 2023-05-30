@@ -22,7 +22,7 @@ void ModeManager::startMode(MODE mode) {
             mActiveMode = std::make_unique<SnakeHandler>();
             break;
         default:
-
+            mActiveMode = std::make_unique<DummyHandler>();
             break;
     }
 

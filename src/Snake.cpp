@@ -5,7 +5,6 @@ Snake::Snake(int w, int h) {
     mHeight = h;
     mActiveField = std::vector<std::vector<FieldCell>>(mWidth, std::vector<FieldCell>(mHeight));
     mBuferField = std::vector<std::vector<FieldCell>>(mWidth, std::vector<FieldCell>(mHeight));
-    init();
 }
 
 void Snake::setColorField(Color color) {
@@ -21,7 +20,6 @@ void Snake::setColorFood(Color color) {
 }
 
 void Snake::setDirection(Direction direction) {
-    std::cout << "direction " << direction << std::endl;
     mDirection = direction;
 }
 
@@ -31,7 +29,7 @@ void Snake::setTimeout(std::string timeout) {
 
 void Snake::init() {
     createSnake();
-    generateFood();
+    generateFood(10);
 }
 
 void Snake::step() {
@@ -42,10 +40,6 @@ void Snake::step() {
             switch (cell.type)
             {
             case BODY:
-            std::cout << "Body at " << i << " " << j << std::endl;
-                // mBuferField[nextPosition.x][nextPosition.y].type = BODY;
-                // mBuferField[i][j].type = EMPTY;
-                // mBuferField[nextPosition.x][nextPosition.y].nextCell = mActiveField[i][j].nextCell;
                 mBuferField[i][j].age--;
                 if (mBuferField[i][j].age == 0) {
                     mBuferField[i][j].type = EMPTY;
@@ -57,13 +51,12 @@ void Snake::step() {
                 } else {
                     if (isOnFood(nextPosition)) {
                         mLength++;
-                        generateFood();
+                        generateFood(1);
                     }
                     mBuferField[nextPosition.x][nextPosition.y].type = HEAD;
                     mBuferField[nextPosition.x][nextPosition.y].age = mLength;
                     mBuferField[i][j].type = BODY;
                     mBuferField[i][j].age--;
-                    // mBuferField[nextPosition.x][nextPosition.y].nextCell = mDirection;
                 }
                 break;
             default:
@@ -115,32 +108,32 @@ bool Snake::isOnFood(Position pos) {
     return (mActiveField[pos.x][pos.y].type == FOOD);
 }
 
-void Snake::generateFood() {
+void Snake::generateFood(int amount) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> posX(0, mWidth - 1);
     std::uniform_int_distribution<int> posY(0, mHeight - 1);
     int x = -1;
     int y = -1;
-    do {
-        x = posX(gen);
-        y = posY(gen);
-    } while (mBuferField[x][y].type != EMPTY);
-    mBuferField[x][y].type = FOOD;
-    std::cout << "Food generated at " << x << " " << y << std::endl;
+    for (int i = 0; i < amount; i++) {
+        do {
+            x = posX(gen);
+            y = posY(gen);
+        } while (mBuferField[x][y].type != EMPTY);
+        mBuferField[x][y].type = FOOD;
+    }
 }
 
 void Snake::createSnake() {
-    mLength = 3;
+    mLength = 2;
 
-    mActiveField[mWidth / 2][mHeight / 2].type = BODY;
-    mActiveField[mWidth / 2][mHeight / 2].age = mLength - 2;
-
-    mActiveField[(mWidth / 2) - 1][mHeight / 2].type = BODY;
-    mActiveField[(mWidth / 2) - 1][mHeight / 2].age = mLength - 1;
+    mActiveField[(mWidth / 2)][mHeight / 2].type = BODY;
+    mActiveField[(mWidth / 2)][mHeight / 2].age = mLength - 1;
 
     mActiveField[(mWidth / 2) + 1][mHeight / 2].type = HEAD;
     mActiveField[(mWidth / 2) + 1][mHeight / 2].age = mLength;
+
+    mBuferField = mActiveField;
 }
 
 Position Snake::getNextCell(Position curr, Direction direction) {
