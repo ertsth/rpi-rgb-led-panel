@@ -13,7 +13,7 @@ void GameOfLifeHandler::onInit() {
 }
 
 void GameOfLifeHandler::onFinish() {
-
+    LedMatrix::getInstance()->clear();
 }
 
 void GameOfLifeHandler::execute() {

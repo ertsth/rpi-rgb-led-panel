@@ -13,7 +13,7 @@ void SnakeHandler::onInit() {
 }
 
 void SnakeHandler::onFinish() {
-
+    LedMatrix::getInstance()->clear();
 }
 
 void SnakeHandler::execute() {
@@ -23,8 +23,6 @@ void SnakeHandler::execute() {
 void SnakeHandler::updateParameters(ModeParameters parameters) {
     std::string key = parameters.first;
     std::string val = parameters.second;
-
-    // std::cout << "Keyval: " << key << " | " << val << std::endl;
 
     if (key == ModeConstants::KEY_SNAKE_DIRECTION) {
         if (val == "up") mSnake.get()->setDirection(UP);

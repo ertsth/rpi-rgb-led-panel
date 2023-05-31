@@ -3,6 +3,7 @@
 
 #include "ModeConstants.h"
 #include "IModeHandler.h"
+#include "LedMatrix.h"
 #include <iostream>
 
 class DummyHandler : public IModeHandler {
