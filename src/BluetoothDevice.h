@@ -20,6 +20,7 @@ public:
     void connect();
     void disconnect();
     void writeMsg(std::string &msg);
+    bool isConnected();
 
     class ReadThread {
         public:
@@ -30,6 +31,7 @@ private:
     std::string m_serial_port_name = "/dev/rfcomm0";
     int m_fd = -1;
     std::unique_ptr<std::thread> m_thread;
+    bool m_isConnected = false;
 };
 
 #endif // BLUETOOTH_DEVICE_H

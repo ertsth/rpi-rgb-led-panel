@@ -1,11 +1,13 @@
 #include "BluetoothDevice.h"
 
 void BluetoothDevice::connect() {
-    if (m_fd < 0) {
-        printf("Connecting...");
-        m_fd = open(m_serial_port_name.c_str(), O_RDWR);
+    if (isConnected()) return;
+    printf("Connecting...\n");
+    m_fd = open(m_serial_port_name.c_str(), O_RDWR);
+    printf("m_fd = %i\n", m_fd);
+    if (m_fd > 0) {
+        m_isConnected = true;
         m_thread = std::make_unique<std::thread>(BluetoothDevice::ReadThread(), this);
-        printf("m_fd = %i", m_fd);
     }
 }
 
@@ -21,7 +23,10 @@ void BluetoothDevice::writeMsg(std::string &msg) {
     std::cout << "Msg: " << msg.c_str() << ". s=" << size << std::endl;
     ssize_t n = write(m_fd, msg_chars, size);
     std::cout << "Write " << n << " bytes" << std::endl;
+}
 
+bool BluetoothDevice::isConnected() {
+    return m_isConnected;
 }
 
 void BluetoothDevice::ReadThread::operator()(BluetoothDevice* bt) {
@@ -29,7 +34,7 @@ void BluetoothDevice::ReadThread::operator()(BluetoothDevice* bt) {
     while (true)
     {
         if (bt->m_fd < 0) {
-            printf("Error %i from open: %s\n", errno, "strerror(errno)");
+            printf("Error %i from open: %s\n", errno, strerror(errno));
         } else {
             char read_buf [1024] = {};
 

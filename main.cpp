@@ -1,4 +1,3 @@
-// #include "src/ModeManager.h"
 #include "src/BluetoothDevice.h"
 
 #include <thread>
@@ -13,7 +12,7 @@ int main(int argc, char **argv) {
     while (true)
     {
         bt->connect();
-        sleep(5);
+        sleep(1);
     }
     bt->disconnect();
 
