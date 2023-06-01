@@ -35,7 +35,7 @@ void SnakeHandler::updateParameters(ModeParameters parameters) {
         mSnake.get()->setColorSnake(Color::fromHex(val));
     } else if (key == ModeConstants::KEY_SNAKE_COLOR_FOOD) {
         mSnake.get()->setColorFood(Color::fromHex(val));
-    } else if (key == ModeConstants::KEY_SNAKE_SPEED) {
+    } else if (key == ModeConstants::KEY_SNAKE_TIMEOUT) {
         mSnake.get()->setTimeout(val);
     }
 }

@@ -28,8 +28,8 @@ void GameOfLife::setRuleOfSurvive(std::string rule) {
     mRuleSurvive = rule;
 }
 
-void GameOfLife::setSpeed(std::string speed) {
-    mTimeout = DEFAULT_TIMEOUT * std::stof(speed);
+void GameOfLife::setTimeout(std::string timeout) {
+    mTimeout = DEFAULT_TIMEOUT * std::stof(timeout);
     std::cout << "Timeout (ms): " << mTimeout << std::endl;
 }
 

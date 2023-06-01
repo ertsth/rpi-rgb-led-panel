@@ -77,10 +77,9 @@ void MessageHandler::commandModeSetting(nlohmann::json json) {
             nlohmann::json rule = json[ModeConstants::KEY_GAME_OF_LIFE_MODE_RULE_SURVIVE];
             param.first = ModeConstants::KEY_GAME_OF_LIFE_MODE_RULE_SURVIVE;
             param.second = rule;
-        } else if (json.find(ModeConstants::KEY_GAME_OF_LIFE_MODE_SPEED) != json.end()) {
-            nlohmann::json speed = json[ModeConstants::KEY_GAME_OF_LIFE_MODE_SPEED];
-            param.first = ModeConstants::KEY_GAME_OF_LIFE_MODE_SPEED;
-            param.second = speed;
+        } else if (json.find(ModeConstants::KEY_GAME_OF_LIFE_MODE_TIMEOUT) != json.end()) {
+            param.first = ModeConstants::KEY_GAME_OF_LIFE_MODE_TIMEOUT;
+            param.second = json[ModeConstants::KEY_GAME_OF_LIFE_MODE_TIMEOUT];
         }
     } else if (mode.compare(ModeConstants::MODE_IMAGE) == 0) {
         if (json.find(ModeConstants::KEY_GENERAL_SET_PIXEL) != json.end()) {
@@ -101,9 +100,9 @@ void MessageHandler::commandModeSetting(nlohmann::json json) {
         } else if (json.find(ModeConstants::KEY_SNAKE_DIRECTION) != json.end()) {
             param.first = ModeConstants::KEY_SNAKE_DIRECTION;
             param.second = json[ModeConstants::KEY_SNAKE_DIRECTION];
-        } else if (json.find(ModeConstants::KEY_SNAKE_SPEED) != json.end()) {
-            param.first = ModeConstants::KEY_SNAKE_SPEED;
-            param.second = json[ModeConstants::KEY_SNAKE_SPEED];
+        } else if (json.find(ModeConstants::KEY_SNAKE_TIMEOUT) != json.end()) {
+            param.first = ModeConstants::KEY_SNAKE_TIMEOUT;
+            param.second = json[ModeConstants::KEY_SNAKE_TIMEOUT];
         }
     } else if (mode.compare(ModeConstants::MODE_CUSTOM) == 0) {
         std::string script = json[ModeConstants::KEY_CUSTOM_SCRIPT];

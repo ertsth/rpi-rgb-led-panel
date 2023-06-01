@@ -40,7 +40,7 @@ public:
     void setColorOfDead(Color color);
     void setRuleOfBirth(std::string rule);
     void setRuleOfSurvive(std::string rule);
-    void setSpeed(std::string speed);
+    void setTimeout(std::string timeout);
     void run();
 
 private:

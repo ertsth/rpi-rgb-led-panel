@@ -20,7 +20,7 @@ const char* ModeConstants::KEY_GAME_OF_LIFE_MODE_COLOR_ALIVE = "color_alive";
 const char* ModeConstants::KEY_GAME_OF_LIFE_MODE_COLOR_DEAD = "color_dead";
 const char* ModeConstants::KEY_GAME_OF_LIFE_MODE_RULE_BIRTH = "rule_birth";
 const char* ModeConstants::KEY_GAME_OF_LIFE_MODE_RULE_SURVIVE = "rule_survive";
-const char* ModeConstants::KEY_GAME_OF_LIFE_MODE_SPEED = "speed";
+const char* ModeConstants::KEY_GAME_OF_LIFE_MODE_TIMEOUT = "timeout";
 // Custom mode
 const char* ModeConstants::KEY_CUSTOM_SCRIPT = "script";
 // Snake mode
@@ -28,4 +28,4 @@ const char* ModeConstants::KEY_SNAKE_COLOR_FIELD = "color_field";
 const char* ModeConstants::KEY_SNAKE_COLOR_SNAKE = "color_snake";
 const char* ModeConstants::KEY_SNAKE_COLOR_FOOD = "color_food";
 const char* ModeConstants::KEY_SNAKE_DIRECTION = "direction";
-const char* ModeConstants::KEY_SNAKE_SPEED = "speed";
+const char* ModeConstants::KEY_SNAKE_TIMEOUT = "timeout";

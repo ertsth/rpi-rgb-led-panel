@@ -38,7 +38,7 @@ class ModeConstants {
     const static char* KEY_GAME_OF_LIFE_MODE_COLOR_DEAD;
     const static char* KEY_GAME_OF_LIFE_MODE_RULE_BIRTH;
     const static char* KEY_GAME_OF_LIFE_MODE_RULE_SURVIVE;
-    const static char* KEY_GAME_OF_LIFE_MODE_SPEED;
+    const static char* KEY_GAME_OF_LIFE_MODE_TIMEOUT;
     // Custom mode
     const static char* KEY_CUSTOM_SCRIPT;
     // Snake mode
@@ -46,7 +46,7 @@ class ModeConstants {
     const static char* KEY_SNAKE_COLOR_SNAKE;
     const static char* KEY_SNAKE_COLOR_FOOD;
     const static char* KEY_SNAKE_DIRECTION;
-    const static char* KEY_SNAKE_SPEED;
+    const static char* KEY_SNAKE_TIMEOUT;
 };
 
 #endif // MODE_CONSTANTS

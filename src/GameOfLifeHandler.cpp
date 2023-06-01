@@ -38,7 +38,7 @@ void GameOfLifeHandler::updateParameters(ModeParameters parameters) {
         mGameOfLife.get()->setRuleOfBirth(val);
     } else if (key == ModeConstants::KEY_GAME_OF_LIFE_MODE_RULE_SURVIVE) {
         mGameOfLife.get()->setRuleOfSurvive(val);
-    } else if (key == ModeConstants::KEY_GAME_OF_LIFE_MODE_SPEED) {
-        mGameOfLife.get()->setSpeed(val);
+    } else if (key == ModeConstants::KEY_GAME_OF_LIFE_MODE_TIMEOUT) {
+        mGameOfLife.get()->setTimeout(val);
     }
 }
