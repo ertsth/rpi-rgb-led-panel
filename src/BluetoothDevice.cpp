@@ -35,6 +35,7 @@ void BluetoothDevice::ReadThread::operator()(BluetoothDevice* bt) {
     {
         if (bt->m_fd < 0) {
             printf("Error %i from open: %s\n", errno, strerror(errno));
+            bt->m_isConnected = false;
         } else {
             char read_buf [1024] = {};
 
