@@ -10,9 +10,6 @@ public:
     virtual void execute() = 0;
     virtual void updateParameters(ModeParameters parameters) = 0;
     virtual MODE getModeName() = 0;
-
-private:
-
 };
 
 #endif // I_MODE_HANDLER
